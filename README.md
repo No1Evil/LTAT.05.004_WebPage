@@ -1,5 +1,6 @@
 GROUP: AM
+
 Group members:
-    Nele-Liis
-    Marek
-    Fjodor
+Nele-Liis,
+Marek,
+Fjodor
