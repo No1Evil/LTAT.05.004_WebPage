@@ -61,13 +61,8 @@ header {
         grid-template-columns: 200px 1fr;
         gap: 15px;
     }
-
-    #rightPanel {
-        display: none;
-    }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     header {
         padding: 10px;
@@ -76,23 +71,5 @@ header {
     #navigation nav ul {
         justify-content: center;
         flex-grow: 1;
-    }
-
-    #mainBody {
-        grid-template-columns: 1fr;
-        padding: 10px;
-    }
-
-    #leftPanel, #rightPanel {
-        display: none;
-    }
-    
-    .post-container {
-        width: 100%;
-        max-width: 350px;
-        margin: 20px auto;
-    }
-    textarea {
-        width: 96%;
     }
 }

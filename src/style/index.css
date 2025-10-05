@@ -137,3 +137,32 @@ footer {
     border-radius: 30px;
 }
 
+/* Tablet */
+@media (max-width: 1000px) {
+    #rightPanel {
+        display: none;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+    #mainBody {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    #leftPanel, #rightPanel {
+        display: none;
+    }
+    
+    .post-container {
+        width: 100%;
+        max-width: 300px;
+        margin: 25px auto;
+    }
+
+    textarea {
+        width: 80%;
+    }
+}
