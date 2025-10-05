@@ -1,4 +1,4 @@
-/* 3. 3 Columns - css grid */
+/* 3 Columns - css grid */
 #mainBody {
     display: grid;
     grid-template-columns: 250px 1fr 250px; 
