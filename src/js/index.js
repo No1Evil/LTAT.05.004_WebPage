@@ -56,7 +56,7 @@ function createPostElement(postData) {
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Create a few test posts
     createPostElement({
-        author: "Основной Пользователь",
+        author: "User",
         text: "Am blue",
         date: "Oct 6, 2025",
         imageSrc: "../images/test_post.png",
