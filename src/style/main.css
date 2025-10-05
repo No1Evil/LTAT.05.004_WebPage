@@ -5,6 +5,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100vh;
 }
 
@@ -51,7 +52,7 @@ header {
     /* border-radius: 50%; rounded profile picture */
     background-color: #ddd;
     display: block;
-    border: 2px solid #004080;
+    /* border: 2px solid wheat; Maybe use border in the future? */
 }
 
 /* Tablet */

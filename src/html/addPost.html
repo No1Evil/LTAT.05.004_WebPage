@@ -5,26 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Post Page</title>
   <link rel="stylesheet" href="..\style\addPost.css">
+  <link rel="stylesheet" href="..\style\main.css">
 </head>
 <body>
-
-    <header class="navbar">
-    <nav>
-        <a href="index.html">Home</a>
-    </nav>
-    <a class="profile" href="#"><img src="../images/me.png" width="50" height="50" alt="My picture"></a>
+    <header>
+        <div id="navigation">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="addPost.html">Post</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="account">
+            <a href="login.html">
+                <img src="../images/me.png" alt="account picture">
+            </a>
+        </div>
     </header>
 
   
     <form class ="post-container">
         <div class="form-group">
-        <label for="postBody">Post body</label>
-        <textarea id="postBody" placeholder="Write something..."></textarea>
+            <label for="postBody">Post body</label>
+            <textarea id="postBody" placeholder="Write something..."></textarea>
         </div>
 
         <div class="form-group">
-        <label for="fileUpload">Select file</label>
-        <input type="file" id="fileUpload">
+            <label for="fileUpload">Select file</label>
+            <input type="file" id="fileUpload">
         </div>
 
         <button type="button" onclick="window.location.href='index.html'">Create post</button>
