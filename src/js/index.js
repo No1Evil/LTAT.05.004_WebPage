@@ -1,4 +1,13 @@
-function addSamplePost() {
+/**
+ * Self-Explanatory :)
+ * @param {object} postData - post data
+ * @param {string} postData.author - Autor name
+ * @param {string} postData.text - Main text of the post
+ * @param {string} postData.date - Publication date
+ * @param {string} [postData.imageSrc] - Image URL (optional)
+ * @param {string} [postData.avatarSrc] - Avatar URL (optional, default '../images/me.png').
+ */
+function createPostElement(postData) {
     const postList = document.getElementById('postList');
 
     if (!postList) {
@@ -6,62 +15,77 @@ function addSamplePost() {
         return;
     }
 
-    // Test post
+    // Default values for optional parameters
+    const {
+        author,
+        text,
+        date,
+        imageSrc = '',
+        avatarSrc = '../images/me.png',
+        likes = '0'
+    } = postData;
+
+    const imageHTML = imageSrc 
+        ? `<img src="${imageSrc}" alt="Post Image" class="post-image">` 
+        : '';
+
     const newPostHTML = `
         <article class="post-card">
             <div class="post-header">
-                <img src="../images/me.png" alt="User Avatar" class="post-avatar">
+                <img src="${avatarSrc}" alt="User Avatar" class="post-avatar">
                 <div class="post-info">
-                    <h4 class="post-author">User</h4>
+                    <h4 class="post-author">${author}</h4>
                 </div>
-            <span class="post-date">Oct 5, 2025</span> 
+            <span class="post-date">${date}</span> 
             </div>
             <div class="post-content">
                 <p>
-                    Am blue
+                    ${text}
                 </p>
-                <img src="../images/test_post.png" alt="Post Image" class="post-image">
+                ${imageHTML}
             </div>
             <div class="post-actions">
-                <span>👍 (#TODO)</span>
+                <span>${likes} 👍</span>
             </div>
         </article>
     `;
 
     postList.insertAdjacentHTML('afterbegin', newPostHTML);
-}
+}-
 
-function addTestPostNoImg() {
-    const postList = document.getElementById('postList');
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Create a few test posts
+    createPostElement({
+        author: "Основной Пользователь",
+        text: "Am blue",
+        date: "Oct 6, 2025",
+        imageSrc: "../images/test_post.png",
+    });
 
-    if (!postList) {
-        console.error("Контейнер #postList не найден.");
-        return;
-    }
+    createPostElement({
+        author: "Dumb user",
+        text: "Let me cook",
+        date: "Oct 5, 2025",
+        avatarSrc: "../images/chinwoo_avatar.png"
+    });
+    
+    createPostElement({
+        author: "Admin",
+        text: "Never post shit again",
+        date: "Oct 4, 2025",
+        likes: "200069"
+    });
 
-    // Test post
-    const newPostHTML = `
-        <article class="post-card">
-            <div class="post-header">
-                <img src="../images/me.png" alt="User Avatar" class="post-avatar">
-                <div class="post-info">
-                    <h4 class="post-author">Dumb user</h4>
-                </div>
-            <span class="post-date">Oct 5, 2025</span> 
-            </div>
-            <div class="post-content">
-                <p>
-                    Let me cook
-                </p>
-            </div>
-            <div class="post-actions">
-                <span>👍 (#TODO)</span>
-            </div>
-        </article>
-    `;
+    createPostElement({
+        author: "Dbqbwqheqetqdbqru",
+        text: "hey guys",
+        date: "Oct 4, 2025",
+        likes: "1"
+    });
 
-    postList.insertAdjacentHTML('afterbegin', newPostHTML);
-}
-
-document.addEventListener('DOMContentLoaded', addTestPostNoImg);
-document.addEventListener('DOMContentLoaded', addSamplePost);
+    createPostElement({
+        author: "Wdiqjqidqtudqh",
+        text: "heyo",
+        date: "Oct 4, 2025",
+    });
+});
