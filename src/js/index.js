@@ -11,7 +11,7 @@ function createPostElement(postData) {
     const postList = document.getElementById('postList');
 
     if (!postList) {
-        console.error("Контейнер #postList не найден.");
+        console.error("No #postList");
         return;
     }
 
