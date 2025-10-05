@@ -6,7 +6,7 @@
  * @param {string} postData.date - Publication date
  * @param {string} [postData.imageSrc] - Image URL (optional)
  * @param {string} [postData.avatarSrc] - Avatar URL (optional, default '../images/me.png').
- */
+ */ 
 function createPostElement(postData) {
     const postList = document.getElementById('postList');
 
