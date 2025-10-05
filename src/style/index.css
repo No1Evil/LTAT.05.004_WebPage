@@ -11,6 +11,10 @@
 }
 
 /* Panels */
+/*
+    TODO MAKE THEM STICK TO THE LEFT AND RIGHT SIDES OF THE SCREEN
+    No clue how to do that yet, cuz of the grid layout
+*/
 #leftPanel, #rightPanel {
     padding: 15px;
     background-color: rgba(0,0,0,0.2);
@@ -56,10 +60,17 @@
     border: 1px solid #ccc; 
 }
 
+/* Adjacent Sibling Selector usage */
 .post-content img.post-image {
     width: 100%;
     height: auto;
     border-radius: 8px;
+    margin-top: 10px;
+}
+
+.post-content + .post-actions {
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Тонкая линия разделитель */
+    padding-top: 10px;
     margin-top: 10px;
 }
 
@@ -75,11 +86,32 @@
     flex-grow: 1; 
 }
 
+/* Usage of child selector */
+.post-info > h4.post-author {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+/* General Sibling Selector 
+THE HELL IS THAT 
+TODOOOOOOO
+*/
+
 .post-date {
     margin-left: auto;
     font-size: 0.85em;
     color: #606770;
     white-space: nowrap; 
+}
+
+/* Pseudo-element usage */
+.post-date::before {
+    content: ">";
+    margin-right: 5px;
+    margin-left: 5px;
+    color: goldenrod;
+    font-weight: normal;
 }
 
 .post-avatar {
