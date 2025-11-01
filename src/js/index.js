@@ -1,10 +1,11 @@
 /**
  * Self-Explanatory :)
  * @param {object} postData - post data
- * @param {string} postData.author - Autor name
- * @param {string} postData.text - Main text of the post
- * @param {string} postData.date - Publication date
- * @param {string} [postData.imageSrc] - Image URL (optional)
+ * @param {string} postData.title - Post title
+ * @param {string} postData.username - Autor name
+ * @param {string} postData.content - Main text of the post
+ * @param {string} postData.created_at - Publication date
+ * @param {string} [postData.images] - Image URLs (optional)
  * @param {string} [postData.avatarSrc] - Avatar URL (optional, default '../images/me.png').
  */ 
 function createPostElement(postData) {
@@ -17,16 +18,19 @@ function createPostElement(postData) {
 
     // Default values for optional parameters
     const {
-        author,
-        text,
-        date,
-        imageSrc = '',
+        username,
+        title,
+        content,
+        created_at,
+        images = [],
         avatarSrc = '../images/me.png',
         likes = '0'
     } = postData;
 
-    const imageHTML = imageSrc 
-        ? `<img src="${imageSrc}" alt="Post Image" class="post-image">` 
+    const imageHTML = images.length > 0 
+        ? images.map(img => 
+            `<img src="${img.url}" alt="${img.name}" class="post-image">`
+          ).join('') 
         : '';
 
     const newPostHTML = `
@@ -34,13 +38,16 @@ function createPostElement(postData) {
             <div class="post-header">
                 <img src="${avatarSrc}" alt="User Avatar" class="post-avatar">
                 <div class="post-info">
-                    <h4 class="post-author">${author}</h4>
+                    <h4 class="post-author">${username}</h4>
                 </div>
-            <span class="post-date">${date}</span> 
+            <span class="post-date">${created_at}</span> 
             </div>
             <div class="post-content">
+                <h4>
+                    ${title}
+                </h4>
                 <p>
-                    ${text}
+                    ${content}
                 </p>
                 ${imageHTML}
             </div>
@@ -51,43 +58,56 @@ function createPostElement(postData) {
     `;
 
     postList.insertAdjacentHTML('afterbegin', newPostHTML);
-}-
+}
+
+// NO PROBLEM, TAKE THAT! :))
+const MASTER_KEY = "$2a$10$JUOR5w/jlcQRAY95xO0X/OQfA/VgAARVfmgMwN/fVlQffXnPqpS5y";
+/**
+ * Fetch data from a given URL and return it as JSON.
+ * @param {*} url - URL to fetch data from
+ * @returns JSON object
+ */
+async function getData(url) {
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-Master-Key': MASTER_KEY,
+                
+                'X-Bin-Meta': 'false' 
+            }
+        });
+
+        const result = await response.json();
+        console.log("Fetched data:", result);
+        
+        return result; 
+
+    } catch (error) {
+        console.error("Error fetching data:", error.message);
+        return null; 
+    }
+}
+
+const BIN_ID = "690651bfd0ea881f40cc6adb";
+const URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+async function init() {
+    //Fetch posts from remote JSON bin
+    //const localPostsArray = await getData(URL);
+    const localPostsArray = await getData('../tempDatabase/posts.json')
+
+    if (Array.isArray(localPostsArray)) {
+        for (const postData of localPostsArray) {
+            createPostElement(postData);
+        }
+    } else {
+        console.error("Failed to retrieve or process post data.");
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Create a few test posts
-    createPostElement({
-        author: "User",
-        text: "Am blue",
-        date: "Oct 6, 2025",
-        imageSrc: "../images/test_post.png",
-    });
-
-    createPostElement({
-        author: "Dumb user",
-        text: "Let me cook",
-        date: "Oct 5, 2025",
-        avatarSrc: "../images/chinwoo_avatar.png"
-    });
-    
-    createPostElement({
-        author: "Admin",
-        text: "Never post shit again",
-        date: "Oct 4, 2025",
-        likes: "200069"
-    });
-
-    createPostElement({
-        author: "Dbqbwqheqetqdbqru",
-        text: "hey guys",
-        date: "Oct 4, 2025",
-        likes: "1"
-    });
-
-    createPostElement({
-        author: "Wdiqjqidqtudqh",
-        text: "heyo",
-        date: "Oct 4, 2025",
-    });
+    init();
 });
 
 // dropdown menu
