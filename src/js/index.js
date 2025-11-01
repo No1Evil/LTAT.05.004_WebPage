@@ -89,3 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
         date: "Oct 4, 2025",
     });
 });
+
+// dropdown menu
+const profilePhoto = document.getElementById('profilePhoto');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+// toggle dropdown when clicking the profile photo
+profilePhoto.addEventListener('click', () => {
+  dropdownMenu.classList.toggle('active');
+});
+
+// close dropdown when clicking outside
+ window.addEventListener('click', (event) => {
+    if (!event.target.closest('#account')) {
+        dropdownMenu.classList.remove('active');
+    }
+});

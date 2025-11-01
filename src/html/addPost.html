@@ -17,10 +17,15 @@
                 </ul>
             </nav>
         </div>
-        <div id="account">
-            <a href="login.html">
-                <img src="../images/me.png" alt="account picture">
-            </a>
+        <div id="account"> 
+            <img src="../images/me.png" alt="account picture" class="profile-photo" id="profilePhoto">
+            <div class="dropdown" id="dropdownMenu">
+                <div class="dropdown-item">
+                    <strong> Kasutaja </strong>
+                    <span>meil.meil@meil.com</span>
+                </div>
+                <div class="logout">Logout</div>
+            </div>
         </div>
     </header>
 
@@ -38,7 +43,6 @@
 
         <button type="button" onclick="window.location.href='index.html'">Create post</button>
     </form>
-  
-
+<script type="text/javascript" src="../js/posts.js"></script>
 </body>
 </html>
