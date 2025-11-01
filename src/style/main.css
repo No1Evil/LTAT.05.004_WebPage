@@ -130,12 +130,15 @@ header {
 }
 
 .logout {
+    display: block;            /* et näeks välja nagu nupp */
     color: #e74c3c;
     text-align: center;
     cursor: pointer;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 0 0 8px 8px;
     padding: 12px 0;
+    text-decoration: none;     /* eemaldab linkide allajoone */
+    background-color: #fff;
 }
 
 .logout:hover {
