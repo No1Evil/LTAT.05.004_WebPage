@@ -1,17 +1,17 @@
 [
     {
     "id": 1,
-    "title": "title",
+    "title": "title1",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Pythoni logo"
         },
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -20,13 +20,13 @@
 
     {
     "id": 2,
-    "title": "title",
+    "title": "title2",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -35,17 +35,17 @@
 
     {
     "id": 3,
-    "title": "title",
+    "title": "title3",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Pythoni logo"
         },
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -54,17 +54,17 @@
 
     {
     "id": 4,
-    "title": "title",
+    "title": "title4",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Pythoni logo"
         },
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -73,13 +73,13 @@
 
     {
     "id": 5,
-    "title": "title",
+    "title": "title5",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -88,17 +88,17 @@
 
     {
     "id": 6,
-    "title": "title",
+    "title": "title6",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Pythoni logo"
         },
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -107,13 +107,13 @@
 
     {
     "id": 7,
-    "title": "title",
+    "title": "title7",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Pythoni logo"
         }
     ],
@@ -122,17 +122,17 @@
 
     {
     "id": 8,
-    "title": "title",
+    "title": "title8",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://i8.cloudfable.net/styles/550x550/576.238/Black/funny-aura-energy-67-six-seven-genz-meme-slang-mens-t-shirt-back-20250915053811-bitr4sxd-s3.jpg",
         "name": "Pythoni logo"
         },
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -141,17 +141,17 @@
 
     {
     "id": 9,
-    "title": "title",
+    "title": "title9",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://www.jobycodirect.com/images/items/abc1.jpg",
         "name": "Pythoni logo"
         },
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://onlinejpgtools.com/images/examples-onlinejpgtools/leaves-with-droplets.jpg",
         "name": "Koodinäide"
         }
     ],
@@ -160,13 +160,13 @@
 
     {
     "id": 10,
-    "title": "title",
+    "title": "title10",
     "username": "koodihunt",
     "created_at": "2025-10-30T14:35:22Z",
     "content": "post body",
     "images": [
         {
-        "url": "https://courses.cs.ut.ee/2025/WAD/fall/Main/Practicals",
+        "url": "https://m.economictimes.com/thumb/height-450,width-600,imgsize-21080,msid-124951862/what-does-67-mean-who-made-the-67-meme-and-why-is-it-so-popular.jpg",
         "name": "Pythoni logo"
         }
     ],
