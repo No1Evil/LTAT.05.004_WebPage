@@ -1,3 +1,6 @@
+import './base.js';
+import {getData} from './utils.js'
+
 /**
  * Self-Explanatory :)
  * @param {object} postData - post data
@@ -60,34 +63,6 @@ function createPostElement(postData) {
     postList.insertAdjacentHTML('afterbegin', newPostHTML);
 }
 
-// NO PROBLEM, TAKE THAT! :))
-const MASTER_KEY = "$2a$10$JUOR5w/jlcQRAY95xO0X/OQfA/VgAARVfmgMwN/fVlQffXnPqpS5y";
-/**
- * Fetch data from a given URL and return it as JSON.
- * @param {*} url - URL to fetch data from
- * @returns JSON object
- */
-async function getData(url) {
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'X-Master-Key': MASTER_KEY,
-                
-                'X-Bin-Meta': 'false' 
-            }
-        });
-
-        const result = await response.json();
-        console.log("Fetched data:", result);
-        
-        return result; 
-
-    } catch (error) {
-        console.error("Error fetching data:", error.message);
-        return null; 
-    }
-}
 
 const BIN_ID = "690651bfd0ea881f40cc6adb";
 const URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
@@ -108,20 +83,4 @@ async function init() {
 
 document.addEventListener('DOMContentLoaded', () => {
     init();
-});
-
-// dropdown menu
-const profilePhoto = document.getElementById('profilePhoto');
-const dropdownMenu = document.getElementById('dropdownMenu');
-
-// toggle dropdown when clicking the profile photo
-profilePhoto.addEventListener('click', () => {
-  dropdownMenu.classList.toggle('active');
-});
-
-// close dropdown when clicking outside
- window.addEventListener('click', (event) => {
-    if (!event.target.closest('#account')) {
-        dropdownMenu.classList.remove('active');
-    }
 });
