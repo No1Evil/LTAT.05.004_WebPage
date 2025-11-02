@@ -19,18 +19,11 @@
         </div>
         <div id="account"> 
             <img src="../images/me.png" alt="account picture" class="profile-photo" id="profilePhoto">
-            <div class="dropdown" id="dropdownMenu">
-                <div class="dropdown-item">
-                    <strong> Kasutaja </strong>
-                    <span>meil.meil@meil.com</span>
-                </div>
-                <a href="login.html" class="logout">Logout</a>
-            </div>
         </div>
     </header>
 
   
-    <form class ="post-container">
+    <form action="index.html" method="get" class ="post-container" id="newPostForm">
         <div class="form-group">
             <label for="postBody">Post body</label>
             <textarea id="postBody" placeholder="Write something..."></textarea>
@@ -41,8 +34,8 @@
             <input type="file" id="fileUpload">
         </div>
 
-        <button type="button" onclick="window.location.href='index.html'">Create post</button>
+        <button type="submit">Create post</button>
     </form>
-<script type="text/javascript" src="../js/posts.js"></script>
+<script type="module" src="../js/posts.js"></script>
 </body>
 </html>

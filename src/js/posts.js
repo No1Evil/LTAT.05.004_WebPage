@@ -1,3 +1,5 @@
+import './base.js';
+
 // Maybe http post request? But then we should use auth tokens 0.0
 function createPost(user, title, content){
     const postListContainer = document.getElementById('postList')
@@ -31,18 +33,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // TODO
 })
 
-// dropdown menu
-const profilePhoto = document.getElementById('profilePhoto');
-const dropdownMenu = document.getElementById('dropdownMenu');
-
-// toggle dropdown when clicking the profile photo
-profilePhoto.addEventListener('click', () => {
-  dropdownMenu.classList.toggle('active');
-});
-
-// close dropdown when clicking outside
- window.addEventListener('click', (event) => {
-    if (!event.target.closest('#account')) {
-        dropdownMenu.classList.remove('active');
-    }
-});
