@@ -12,7 +12,6 @@
 
 <script setup>
   import Header from './src/components/Header.vue';
-  import Counter from './src/components/Counter.vue';
   import Footer from './src/components/Footer.vue';
 </script>
 
