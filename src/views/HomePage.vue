@@ -10,7 +10,7 @@
         <Panel title="Second name" side="right">
             <div id="panelContent">
                 <button @click="resetLikes" class="reset-likes-button">
-                    Refresh Page
+                    Refresh Likes
                 </button>
             </div>
         </Panel>
