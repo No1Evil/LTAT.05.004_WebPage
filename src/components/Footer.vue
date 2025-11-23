@@ -1,14 +1,13 @@
 <template>
-  <footer>
-    <div>
-        <p>Heyo. No rights reserved.</p>
-    </div>
-  </footer>
+    <footer>
+        <div class="footer">
+            <p>LTAT.05.004 Webpage project by Fjodor, Marek, Nele-Liis</p>
+            <p>Heyo. No rights reserved.</p>
+        </div>
+    </footer>
 </template>
 
 <script setup>
-
-
 </script>
 
 <style scoped>

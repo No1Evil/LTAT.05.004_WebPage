@@ -1,0 +1,166 @@
+[
+    {
+    "id": 1,
+    "title": "Title 1",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [],
+    "likes": 2
+    },
+
+    {
+    "id": 2,
+    "title": "Title 2",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Koodinäide"
+        }
+    ],
+    "likes": 1
+    },
+
+    {
+    "id": 3,
+    "title": "Title 3",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Pythoni logo"
+        },
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Koodinäide"
+        }
+    ],
+    "likes": 13
+    },
+
+    {
+    "id": 4,
+    "title": "Title 4",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Pythoni logo"
+        },
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Koodinäide"
+        }
+    ],
+    "likes": 1
+    },
+
+    {
+    "id": 5,
+    "title": "Title 5",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Koodinäide"
+        }
+    ],
+    "likes": 1
+    },
+
+    {
+    "id": 6,
+    "title": "Title 6",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Pythoni logo"
+        },
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Koodinäide"
+        }
+    ],
+    "likes": 1
+    },
+
+    {
+    "id": 7,
+    "title": "Title 7",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Pythoni logo"
+        }
+    ],
+    "likes": 1
+    },
+
+    {
+    "id": 8,
+    "title": "Title 8",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://i8.cloudfable.net/styles/550x550/576.238/Black/funny-aura-energy-67-six-seven-genz-meme-slang-mens-t-shirt-back-20250915053811-bitr4sxd-s3.jpg",
+        "name": "Pythoni logo"
+        },
+        {
+        "url": "https://courses.cs.ut.ee/res/img/header_bg_new.jpg",
+        "name": "Koodinäide"
+        }
+    ],
+    "likes": 17
+    },
+
+    {
+    "id": 9,
+    "title": "Title 9",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://www.jobycodirect.com/images/items/abc1.jpg",
+        "name": "Pythoni logo"
+        },
+        {
+        "url": "https://onlinejpgtools.com/images/examples-onlinejpgtools/leaves-with-droplets.jpg",
+        "name": "Koodinäide"
+        }
+    ],
+    "likes": 4
+    }, 
+
+    {
+    "id": 10,
+    "title": "Title 10",
+    "username": "user",
+    "created_at": "2025-10-30T14:35:22Z",
+    "content": "post body",
+    "images": [
+        {
+        "url": "https://m.economictimes.com/thumb/height-450,width-600,imgsize-21080,msid-124951862/what-does-67-mean-who-made-the-67-meme-and-why-is-it-so-popular.jpg",
+        "name": "Pythoni logo"
+        }
+    ],
+    "likes": 1
+    }
+]

@@ -1,13 +1,13 @@
 <template>
   <header>
-    <div class="">
-        <h1>Component</h1>
+    <div class="header">
+        <h2> Forum </h2>
     </div>
     <div id="navigation">
       <nav>
         <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/signup">Signup</router-link></li>
+          <li><router-link to="/"> Home </router-link></li>
+          <li><router-link to="/signup"> Signup </router-link></li>
         </ul>
       </nav>
     </div>
@@ -21,20 +21,27 @@
       >
       
       <div class="dropdown" :class="{ active: isDropdownOpen }">
-        <div class="dropdown-item">Profile</div>
-        <a href="#" class="logout" @click="woah">Logout</a>
+        <div class="dropdown-item"> Profile </div>
+        <a href="#" class="logout" @click="LogOut"> Log out </a>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'; // reaktiivsed muutujad
+import { useRouter } from 'vue-router';
 
-const isDropdownOpen = ref(false);
+const isDropdownOpen = ref(false); // ref teeb muutuja, mida vue jälgib
 
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
+};
+
+// Log Out nupp -> sign up page
+const router = useRouter();
+const LogOut = () => {
+  router.push('/signup'); 
 };
 
 </script>
@@ -88,8 +95,8 @@ header {
 }
 
 .profile-photo {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 75%;
   cursor: pointer;
   border: 2px solid #ccc;
@@ -121,7 +128,6 @@ header {
 .dropdown-item {
     padding: 12px 15px;
     border-bottom: 1px solid #eee;
-    cursor: pointer;
 }
 .logout {
     display: block;
@@ -130,6 +136,12 @@ header {
     color: #e74c3c;
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
+    border-radius: 0 0 8px 8px;
+}
+
+.logout:hover {
+    background-color: #fcebea;
 }
 
 /* --- Media Queries --- */

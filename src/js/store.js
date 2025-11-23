@@ -1,4 +1,6 @@
 import { createStore } from 'vuex';
+import postsData from "../Data/posts.json"; // sünkroonne import JSON failist
+
 
 import postsData from "@/old_files/tempDatabase/posts.json"; // sünkroonne import JSON failist
 
