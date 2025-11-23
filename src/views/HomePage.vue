@@ -9,8 +9,8 @@
         
         <Panel title="Second name" side="right">
             <div id="panelContent">
-                <button @click="megaRefreshLikes">
-                    Refresh likes
+                <button @click="resetLikes" class="reset-likes-button">
+                    Refresh Page
                 </button>
             </div>
         </Panel>
@@ -21,11 +21,13 @@
 <script setup>
 import Posts from "../components/Posts.vue";
 import Panel from "../components/Panel.vue";
+import { useStore } from "vuex";
 
-// Easily reload all the likes like a pro
-// Guys.. implement that later :P dunno how do to without backend
-const megaRefreshLikes = () => {
-    window.location.reload();
+const store = useStore();
+
+const resetLikes = () => {
+    store.dispatch("resetLikes");
+    console.log("Posts likes reset initiated via Vuex dispatch.");
 };
 
 </script>

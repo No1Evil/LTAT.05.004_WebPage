@@ -31,7 +31,7 @@
       </div>
 
       <div class="post-actions">
-        <button @click="incrementLike(post)">❤️ {{ post.likes }} likes</button>
+        <button @click="incrementLike(post.id)">❤️ {{ post.likes }} likes</button>
       </div>
       
     </div>
@@ -39,10 +39,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { getPosts } from '@/js/posts.js';
+import { computed, defineExpose } from 'vue';
+import { useStore } from "vuex";
 
-const posts = ref(getPosts())
+const store = useStore();
+
+const posts = computed(() => store.state.posts);
 
 const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -50,8 +52,8 @@ const formatDate = (dateString) => {
     });
 };
 
-const incrementLike = (post) => {
-    post.likes += 1;
+const incrementLike = (postId) => {
+    store.dispatch("likePost", postId);
 };
 
 </script>
@@ -98,7 +100,7 @@ const incrementLike = (post) => {
 
 /* Pseudo-element usage */
 .post-date::before {
-    content: ">";
+    content: "\>";
     margin-right: 5px;
     margin-left: 5px;
     color: goldenrod;
@@ -126,6 +128,20 @@ const incrementLike = (post) => {
     height: auto; 
     border-radius: 8px;
     margin-top: 10px;
+}
+.post-actions button {
+    cursor: pointer;
+    background-color: #f0f2f5;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #050505;
+    transition: background-color 0.2s;
+}
+
+.post-actions button:hover {
+    background-color: #e4e6eb;
 }
 
 </style>
