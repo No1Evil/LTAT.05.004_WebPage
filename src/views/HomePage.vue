@@ -1,54 +1,71 @@
 <template>
-  <div class="home-page">
-    <div class="posts-container">
-      <PostComponent
-        v-for="post in posts"
-        :key="post.id"
-        :post="post"
-      />
+    <div id="mainBody">
+        
+        <Panel title="First name" side="left" />
+        
+        <div id="postList">
+            <Posts />
+        </div>
+        
+        <Panel title="Second name" side="right">
+            <div id="panelContent">
+                <button @click="resetLikes" class="reset-likes-button">
+                    Refresh Likes
+                </button>
+            </div>
+        </Panel>
+        
     </div>
-    <button @click="resetLikes" class="reset-btn">Reset Likes</button>
-  </div>
 </template>
 
 <script setup>
-import { computed } from "vue"; // reaktiivsete arvutatud väärtuste loomine, uuenevad automaatselt, kui sõltuvused muutuvad
+import Posts from "../components/Posts.vue";
+import Panel from "../components/Panel.vue";
 import { useStore } from "vuex";
-import PostComponent from "../components/Post.vue"; // postComponentid
 
 const store = useStore();
 
-// posts saab storest tagastatud array
-const posts = computed(() => store.state.posts);
-
-// paneb tööle actioni like arvu resetimiseks
 const resetLikes = () => {
-  store.dispatch("resetLikes");
+    store.dispatch("resetLikes");
+    console.log("Posts likes reset initiated via Vuex dispatch.");
 };
+
 </script>
 
 <style scoped>
-.posts-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+#mainBody {
+    display: grid;
+    grid-template-columns: 250px 1fr 250px; 
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+    padding: 20px 10px;
+    
+    min-width: 0; 
 }
 
-.reset-btn {
-  border: black;
-  background-color: white;
-  color: red;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  font-weight: bold;
+@media (max-width: 1000px) {
+    #mainBody {
+        grid-template-columns: 200px 1fr;
+    }
+    #rightPanel {
+        display: none;
+    }
 }
 
-.reset-btn:hover {
-  background-color: #fcebea;
+@media (max-width: 768px) {
+    #mainBody {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    #leftPanel, #rightPanel {
+        display: none;
+    }
+}
+
+#postList {
+    padding: 0;
 }
 </style>

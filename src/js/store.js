@@ -2,8 +2,8 @@ import { createStore } from 'vuex';
 import postsData from "../Data/posts.json"; // sünkroonne import JSON failist
 
 
-// See Vuex documentation for more details: https://vuex.vuejs.org/
-// Dunno what to do with that yet
+import postsData from "@/old_files/tempDatabase/posts.json"; // sünkroonne import JSON failist
+
 const store = createStore({
   // store algandmed, postitused
   state() {
