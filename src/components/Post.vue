@@ -1,7 +1,7 @@
 <template>
   <div class="post-box">
     <h3>{{ post.title }}</h3>
-    <p>{{ post.body }}</p>
+    <p>{{ post.content }}</p>
     <button @click="likePost(post.id)">
       Like ({{ post.likes }})
     </button>
