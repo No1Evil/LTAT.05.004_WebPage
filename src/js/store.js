@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import postsData from "@/old_files/tempDatabase/posts.json"; // sünkroonne import JSON failist
+import postsData from "@/Data/posts.json"; // sünkroonne import JSON failist
 
 const store = createStore({
   // store algandmed, postitused
