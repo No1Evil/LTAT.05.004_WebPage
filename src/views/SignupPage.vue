@@ -1,11 +1,12 @@
 <template>
     <div id="app-container">
         <div id="mainBody">
-            <h2>Signup Page</h2>
+            <Login></Login>
         </div>
     </div>
 </template>
 
 <script setup>
+import Login from "@/components/Login.vue";
 
 </script>
