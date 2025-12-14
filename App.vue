@@ -1,69 +1,37 @@
 <template>
   <div id="app-container">
-    <Header :is-authenticated="isAuthenticated" @logout="Logout" /> 
-    
-    <main id="mainBody"> 
-      <router-view /> 
-    </main>
+    <template v-if="isAuthStatusLoaded">
+        <Header @logout="Logout" />
+        
+        <main id="mainBody"> 
+            <router-view /> 
+        </main>
 
-    <Footer />
+        <Footer />
+    </template>
+    <div v-else>
+        Authenticating...
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
-const isAuthenticated = ref(false);
+const store = useStore();
 
-const checkAuthStatus = async () => {
-    try {
-        const response = await fetch("http://localhost:3000/auth/authenticate", {
-            credentials: 'include',
-        });
-        const data = await response.json();
-        isAuthenticated.value = data.authenticated;
-        console.log("Auth Status Checked:", isAuthenticated.value);
-    } catch (e) {
-        console.error("Authentication check failed:", e);
-        isAuthenticated.value = false;
-    }
-};
+const isAuthenticated = computed(() => store.getters.isAuthenticated);
+const isAuthStatusLoaded = computed(() => store.getters.isAuthStatusLoaded);
 
 const Logout = () => {
-    fetch("http://localhost:3000/auth/logout", {
-        credentials: 'include',
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-        console.log('logged out, jwt deleted');
-    })
-    .catch((e) => {
-        console.log(e);
-        console.log("error login");
-    });
+    store.dispatch('logout');
 };
 
-const Login = () => {
-    fetch("http://localhost:3000/auth/login", {
-        credentials: 'include',
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-        console.log('logged in, jwt created');
-    })
-    .catch((e) => {
-        console.log(e);
-        console.log("error login");
-    });
-};
-
-// When component is mounted will call async func
-onMounted(async () => {
-    await checkAuthStatus();
+onMounted(() => {
+    store.dispatch('checkAuthStatus');
 });
 
 </script>
