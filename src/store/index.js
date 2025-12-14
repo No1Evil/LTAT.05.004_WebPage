@@ -42,9 +42,28 @@ export default createStore({
       } finally {
         commit('SET_AUTH_LOADED', true);
       }
+    },
+    async logout({ commit }) {
+    try {
+      // Call backend to clear cookie
+      await fetch("http://localhost:3000/auth/logout", {
+        credentials: 'include',
+      });
+    } catch (e) {
+      console.error("Logout request failed:", e);
+    } finally {
+      commit('SET_AUTH_STATUS', false);
+      commit('SET_AUTH_LOADED', true);
     }
   },
+  async login({ commit }) {
+    commit('SET_AUTH_STATUS', true);
+    commit('SET_AUTH_LOADED', true);
+  }
+    
+  },
 
+  
   modules: {
   }
 })

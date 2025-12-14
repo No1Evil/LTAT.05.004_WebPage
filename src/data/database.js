@@ -7,10 +7,11 @@ const pool = new Pool({
     port: "5432"
 });
 
-const execute = async(query) => {
+const execute = async(query1, query2) => {
     try {
         await pool.connect(); // create a connection
-        await pool.query(query); // executes a query
+        await pool.query(query1); // executes a query
+        await pool.query(query2)
         return true;
     } catch (error) {
         console.error(error.stack);
@@ -31,7 +32,8 @@ const createTblQuery2 = `
 	    "title" VARCHAR(200) NOT NULL,
 	    "body" VARCHAR(200) NOT NULL,
         "likes" INTEGER DEFAULT 0,
-        "urllink" VARCHAR(200)  
+        "urllink" VARCHAR(200),  
+        "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`;
 
 execute(createTblQuery1, createTblQuery2).then(result => {

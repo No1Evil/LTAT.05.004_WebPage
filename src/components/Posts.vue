@@ -10,6 +10,7 @@
             <span class="title"> <b>Title:</b> {{ post.title }}  </span><br />
             <span class="body"> <b>Body:</b> {{ post.body }} </span> <br />
             <span class="url"> <b>Url:</b> {{ post.urllink }} </span> <br />
+            <span class="time"><b>Posted:</b> {{ formatDate(post.created_at) }}</span><br />
           </a>
         </div>
       </ul>
@@ -27,6 +28,11 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const posts = ref([]);
+
+function formatDate(dateString) {
+  if (!dateString) return "";
+  return new Date(dateString).toLocaleDateString('et-EE'); 
+}
 
 const deleteAllPosts = async () => {
   try {

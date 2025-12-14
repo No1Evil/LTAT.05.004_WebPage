@@ -5,6 +5,7 @@ import CreatePostPage from '../views/CreatePostPage.vue';
 import Login from '../components/Login.vue';
 import ContactPage from '../views/ContactPage.vue';
 import APostPage from '../views/APostPage.vue';
+import auth from './auth'
 
 const routes = [
   {

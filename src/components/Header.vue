@@ -24,7 +24,7 @@
       <div class="dropdown" :class="{ active: isDropdownOpen }">
         <div class="dropdown-item"> Profile </div>
         <a v-if="!isAuthenticated" href="#" @click='Login' class="login">Login</a>
-        <a v-if="isAuthenticated" href="#" class="logout" @click="Logout"> Log out </a>
+        <a v-if="isAuthenticated" href="#" @click="Logout" class="logout" > Log out </a>
       </div>
     </div>
   </header>
@@ -38,7 +38,7 @@ import { getCurrentInstance } from 'vue';
 
 const store = useStore();
 
-const isAuthenticated = computed(() => store.getters.isAuthenticated).value;
+const isAuthenticated = computed(() => store.getters.isAuthenticated);
 
 console.log("Header auth status " + isAuthenticated)
 

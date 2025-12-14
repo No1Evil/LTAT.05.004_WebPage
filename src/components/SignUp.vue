@@ -31,6 +31,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+
+const store = useStore();
 const router = useRouter();
 
 const email = ref("");
@@ -100,6 +103,7 @@ async function handleSignup() {
     }
 
     console.log("Signup success:", result);
+    store.dispatch('login')
     router.push("/");
   })
    .catch ((e) => {
