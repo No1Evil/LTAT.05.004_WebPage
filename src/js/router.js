@@ -7,10 +7,8 @@ import ContactPage from '../views/ContactPage.vue';
 import APostPage from '../views/APostPage.vue';
 import auth from './auth'
 
-const routes = [
-  {
-    path: '/', component: HomePage,
-    beforeEnter: async(to, from, next) => {
+// funktsioon, mis kontrollib, kas kasutaja autenditud
+const requireAuth = async(to, from, next) => {
         let authResult = await auth.authenticated();
         if (!authResult) {
             next('/login')
@@ -18,12 +16,14 @@ const routes = [
             next();
         }
     }
-  },
+
+const routes = [
+  { path: '/', component: HomePage, beforeEnter: requireAuth },
   { path: '/login', component: Login },
   { path: '/signup', component: SignupPage},
-  { path: '/create-post', component: CreatePostPage },
+  { path: '/create-post', component: CreatePostPage, beforeEnter: requireAuth },
   { path: '/contact', component: ContactPage },
-  { path: '/apost/:id', component: APostPage}
+  { path: '/apost/:id', component: APostPage, beforeEnter: requireAuth }
 ];
 
 const router = createRouter({
