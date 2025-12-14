@@ -8,6 +8,7 @@
         <ul>
           <li><router-link to="/"> Home </router-link></li>
           <li><router-link to="/contact"> Contact Us </router-link></li>
+          <li v-if="isAuthenticated"><router-link to="/create-post"> Create post </router-link></li>
         </ul>
       </nav>
     </div>
@@ -22,17 +23,24 @@
       
       <div class="dropdown" :class="{ active: isDropdownOpen }">
         <div class="dropdown-item"> Profile </div>
-        <a href="#" @click='Login' class="login">Login</a>
-        <a href="#" class="logout" @click="Logout"> Log out </a>
+        <a v-if="!isAuthenticated" href="#" @click='Login' class="login">Login</a>
+        <a v-if="isAuthenticated" href="#" class="logout" @click="Logout"> Log out </a>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { getCurrentInstance } from 'vue';
+
+const store = useStore();
+
+const isAuthenticated = computed(() => store.getters.isAuthenticated).value;
+
+console.log("Header auth status " + isAuthenticated)
 
 // --- Setup ---
 const router = useRouter();
