@@ -1,7 +1,10 @@
-# To install:
+# To init:
 npm install
-# Run:
+# run backend:
+npx run server
+# run front:
 npx vite
+
 
 GROUP: AM
 
