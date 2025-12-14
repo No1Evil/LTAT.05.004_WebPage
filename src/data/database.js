@@ -21,8 +21,6 @@ const execute = async(query) => {
 const createTblQuery1 = `
     CREATE TABLE IF NOT EXISTS "users" (
         id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-        firstName VARCHAR(200) NOT NULL,
-        secondName VARCHAR(200) NOT NULL,
         email VARCHAR(200) NOT NULL UNIQUE,
         password VARCHAR(200) NOT NULL 
     );`;
