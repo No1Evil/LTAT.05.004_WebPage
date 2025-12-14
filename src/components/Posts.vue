@@ -1,147 +1,113 @@
 <template>
-  <div id="postList">
-    <div v-for="post in posts" :key="post.id" class="post-card">
-      
-      <header class="post-header">
-        <img 
-          src="@/images/me.png" 
-          alt="User Avatar" 
-          class="post-avatar"
-        >
-        <div class="post-info">
-          <h4 class="post-author">{{ post.username }}</h4>
-          <p class="post-title">{{ post.title }}</p>
-        </div>
-        
-        <span class="post-date">{{ formatDate(post.created_at) }}</span>
-      </header>
-
-      <div class="post-content">
-        <p>{{ post.content }}</p>
-        
-        <div v-if="post.images && post.images.length">
-          <img 
-            v-for="image in post.images" 
-            :key="image.url"
-            :src="image.url"
-            :alt="image.name"
-            class="post-image"
-          >
-        </div>
-      </div>
-
-      <div class="post-actions">
-        <button @click="incrementLike(post.id)">❤️ {{ post.likes }} likes</button>
-      </div>
-      
+  <div class="AllPosts">
+    <div id="post-list">
+    <h1>All Posts</h1>
+     <div class="container">
     </div>
+      <ul>
+        <div class="item" v-for="post in posts" :key="post.id">
+            <a class= 'singlepost' :href="'/apost/' + post.id">
+            <span class="title"> <b>Title:</b> {{ post.title }}  </span><br />
+            <span class="body"> <b>Body:</b> {{ post.body }} </span> <br />
+            <span class="url"> <b>Url:</b> {{ post.urllink }} </span> <br />
+          </a>
+        </div>
+      </ul>
+    </div>
+    <button @click='router.push("/create-post")' class="center">Add post</button>
+    <button @click="deleteAllPosts" class="center">Delete all</button>
   </div>
 </template>
 
+
 <script setup>
-import { computed, defineExpose } from 'vue';
-import { useStore } from "vuex";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
-const store = useStore();
+const router = useRouter();
 
-const posts = computed(() => store.state.posts);
+const posts = ref([]);
 
-const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-        year: 'numeric', month: 'short', day: 'numeric'
+const deleteAllPosts = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/posts`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to delete posts.');
+    }
+
+    const result = await response.json();
+    console.log("Delete all successful:", result);
+    
+    fetchPosts();
+
+  } catch (error) {
+    console.error("Error deleting all posts:", error);
+    alert(`Deletion failed. Error: ${error.message}. Are you logged in?`);
+  }
+};
+
+const fetchPosts = () => {
+  console.log("Fetching posts...");
+  
+  fetch(`http://localhost:3000/api/posts/`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      posts.value = data;
+    })
+    .catch((err) => {
+      console.error("Error fetching posts:", err.message);
     });
 };
 
-const incrementLike = (postId) => {
-    store.dispatch("likePost", postId);
-};
-
+onMounted(() => {
+  fetchPosts();
+  console.log("mounted");
+});
 </script>
 
 <style scoped>
-#postList {
-    padding: 0;
+h1 {
+  font-size: 20px;
 }
-
-.post-card {
-    background-color: rgba(0,0,0,0.2);
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); 
-    margin-bottom: 20px;
-    display: block; 
-    width: 100%;
-    box-sizing: border-box;
+a {
+  text-decoration: none;
 }
-
-.post-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    justify-content: space-between; 
+a:hover {
+  text-decoration: underline;
 }
-
-.post-info {
-    flex-grow: 1; 
+.item {
+  background: rgb(189, 212, 199);
+  margin-bottom: 5px;
+  padding: 3px 5px;
+  border-radius: 10px;
 }
-
-.post-info > h4.post-author {
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 2px;
+#post-list {
+  background: #6e8b97;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  margin: auto;
+  width: 50%;
+  border-radius: 20px;
 }
-
-.post-date {
-    margin-left: auto;
-    font-size: 0.85em;
-    color: #606770;
-    white-space: nowrap; 
+#post-list ul {
+  padding: 0;
 }
-
-/* Pseudo-element usage */
-.post-date::before {
-    content: "\>";
-    margin-right: 5px;
-    margin-left: 5px;
-    color: goldenrod;
-    font-weight: normal;
+#post-list li {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
 }
-
-.post-avatar {
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-}
-
-.post-content + .post-actions {
-    border-top: 1px solid rgba(0, 0, 0, 0.1); 
-    padding-top: 10px;
-    margin-top: 10px;
-}
-
-.post-content img.post-image {
-    width: 20%;
-    max-width: 30%;
-    height: auto; 
-    border-radius: 8px;
-    margin-top: 10px;
-}
-.post-actions button {
-    cursor: pointer;
-    background-color: #f0f2f5;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: 600;
-    color: #050505;
-    transition: background-color 0.2s;
-}
-
-.post-actions button:hover {
-    background-color: #e4e6eb;
-}
-
 </style>
