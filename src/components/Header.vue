@@ -1,13 +1,13 @@
 <template>
   <header>
     <div class="header">
-        <h2> Forum </h2>
+      <h2> Forum </h2>
     </div>
     <div id="navigation">
       <nav>
         <ul>
           <li><router-link to="/"> Home </router-link></li>
-          <li><router-link to="/signup"> Signup </router-link></li>
+          <li><router-link to="/login"> Login </router-link></li>
         </ul>
       </nav>
     </div>
@@ -20,7 +20,7 @@
         @click="toggleDropdown" 
       >
       
-      <div class="dropdown" :class="{ active: isDropdownOpen }">
+      <div v-if="isLoggedIn.value" class="dropdown" :class="{ active: isDropdownOpen }">
         <div class="dropdown-item"> Profile </div>
         <a href="#" class="logout" @click="Logout"> Log out </a>
       </div>
@@ -32,6 +32,15 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getCurrentInstance } from 'vue';
+import { useStore } from "vuex";
+
+const store = useStore();
+
+// Access the status directly from the store's getter
+const isLoggedIn = computed(() => store.getters.isLoggedIn); 
+
+// You can now check the live status using isLoggedIn.value
+console.log("Logged In via Store:", isLoggedIn.value);
 
 // --- Setup ---
 const router = useRouter();
