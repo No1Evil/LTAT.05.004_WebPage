@@ -7,7 +7,6 @@
       <nav>
         <ul>
           <li><router-link to="/"> Home </router-link></li>
-          <li><router-link to="/signup"> Signup </router-link></li>
         </ul>
       </nav>
     </div>
@@ -22,6 +21,7 @@
       
       <div class="dropdown" :class="{ active: isDropdownOpen }">
         <div class="dropdown-item"> Profile </div>
+        <a href="#" @click='Login' class="login">Login</a>
         <a href="#" class="logout" @click="Logout"> Log out </a>
       </div>
     </div>
@@ -43,9 +43,15 @@ const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
 
+const Login = () => {
+  router.push("/login")
+  isDropdownOpen.value = false
+}
+
 const Logout = () => {
   emit('logout');
   isDropdownOpen.value = false;
+  router.push("/login")
 };
 </script>
 
@@ -146,6 +152,22 @@ header {
 .logout:hover {
     background-color: #fcebea;
 }
+
+.login {
+    display: block;
+    padding: 12px 15px;
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0 0 8px 8px;
+}
+
+.login:hover {
+    background-color: #eaf6fc;
+}
+
 
 /* --- Media Queries --- */
 @media (max-width: 768px) {

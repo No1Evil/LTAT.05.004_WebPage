@@ -1,12 +1,12 @@
 <template>
     <div id="app-container">
         <div id="mainBody">
-            <SignUp></SignUp>
+            <Login></Login>
         </div>
     </div>
 </template>
 
 <script setup>
-import SignUp from "@/components/SignUp.vue";
+import Login from "@/components/Login.vue";
 
 </script>

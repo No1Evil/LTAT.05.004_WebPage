@@ -83,11 +83,14 @@ app.post('/auth/signup', async(req, res) => {
         res
             .status(201)
             .cookie('jwt', token, { maxAge: 6000000, httpOnly: true })
-            .json({ user_id: authUser.rows[0].id })
-            .send;
+            .json({ user_id: authUser.rows[0].id });
     } catch (err) {
-        console.error(err.message);
-        res.status(400).send(err.message);
+     console.error(err.message);
+    if (err.code === "23505") {
+        return res.status(400).json({error: "Email already registered" });
+  }
+  
+    res.status(400).json({ error: err.message });
     }
 });
 
@@ -110,15 +113,14 @@ app.post('/auth/login', async(req, res) => {
 
         //Checking if the password is correct
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
-        //console.log("validPassword:" + validPassword);
+        console.log("validPassword:" + validPassword);
         if (!validPassword) return res.status(401).json({ error: "Incorrect password" });
 
         const token = await generateJWT(user.rows[0].id);
         res
             .status(201)
             .cookie('jwt', token, { maxAge: 6000000, httpOnly: true })
-            .json({ user_id: user.rows[0].id })
-            .send;
+            .json({ user_id: user.rows[0].id });
     } catch (error) {
         res.status(401).json({ error: error.message });
     }
@@ -127,7 +129,7 @@ app.post('/auth/login', async(req, res) => {
 //logout a user = deletes the jwt
 app.get('/auth/logout', (req, res) => {
     console.log('delete jwt request arrived');
-    res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
+    res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" })
 });
 
 /*

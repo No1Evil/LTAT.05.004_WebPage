@@ -11,65 +11,64 @@
         <label for="password">Password</label>
         <input v-model="password" type="password" placeholder="Password">
       </div>
-      <div v-if="submitted && passwordErrors.length" class="error-box">
-        <p><strong>Password is not valid:</strong></p>
-        <ul>
-          <li v-for="(err,i) in passwordErrors" :key="i">{{ err }}</li>
-        </ul>
+
+      <div class="container">
+        <button class="center">LogIn</button>
+        <button @click='router.push("/signup")' class="center">Signup</button>
       </div>
-
-
-      <button type="submit">Log in</button> 
+      <div v-if="errorMessage" class="error-box">
+        <p><strong>{{ errorMessage }}</strong></p>
+      </div>
     
     </form>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref} from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const email = ref("");
 const password = ref("");
 const submitted = ref(false);
+const errorMessage = ref("");
 
-const passwordErrors = computed(() => {
-  const errors = [];
-  const pw = password.value;
-
-  if (pw.length < 8 || pw.length > 15)
-    errors.push("Password must be between 8 and 15 characters")
-
-  if (!/^[A-Z]/.test(pw))
-    errors.push("Password must start with an uppercase letter.")
-
-  if (!/[A-Z]/.test(pw))
-    errors.push("Password must include at least one uppercase letter.")
-
-  if ((pw.match(/[a-z]/g) || []).length < 2)
-      errors.push("Password must include at least two lowercase letters.");
-
-  if (!/\d/.test(pw))
-    errors.push("Password must include at least one numeric value.");
-
-  if (!pw.includes("_"))
-    errors.push("Password must include the '_' character.");
-
-    return errors;
-  });
-
-function handleLogin() {
+async function handleLogin() {
  submitted.value = true;
 
  if (!email.value) {
   console.log("Email is required.")
   }
 
-
-
-  if (passwordErrors.value.length > 0 || !password.value) {
-    console.log("Password invalid:", passwordErrors.value)
-    return;
-  }
+    var data = {
+      email: email.value,
+      password: password.value
+    };
+    fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+        credentials: 'include', 
+        body: JSON.stringify(data),
+    })
+    .then(async (response) => {
+    const data = await response.json();
+    if (!response.ok) {
+      // login failed
+      console.error("Login failed:", data.error);
+      errorMessage.value = data.error;
+      return; // stop here, don’t redirect
+    }
+    // login succeeded
+    console.log("Login success:", data);
+    router.push("/");
+  })
+  .catch((e) => {
+    console.error("Network error:", e);
+  });
+    
 
   console.log("Logging in with:", email.value, password.value)
 }
@@ -144,10 +143,22 @@ button:hover {
 .error-box {
   background: #ffefef;
   border: 1px solid #d9534f;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
-  margin-bottom: 15px;
+  margin-top: 15px;
   color: #a94442;
   font-size: 14px;
+}
+
+.center {
+  margin: auto;
+  border: 0;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 30%; 
+}
+.container {
+  display: flex;
+  justify-content: center;
 }
 </style>
