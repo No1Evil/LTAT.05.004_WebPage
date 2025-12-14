@@ -87,7 +87,16 @@ app.post('/auth/signup', async(req, res) => {
             .send;
     } catch (err) {
         console.error(err.message);
-        res.status(400).send(err.message);
+        
+        let errorMessage = "Registration failed due to server error.";
+        
+        if (err.code === '23505' && err.detail.includes('email')) {
+            errorMessage = "A user with that email already exists.";
+        } else {
+            errorMessage = err.message;
+        }
+
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
