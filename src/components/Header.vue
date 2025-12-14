@@ -22,28 +22,31 @@
       
       <div class="dropdown" :class="{ active: isDropdownOpen }">
         <div class="dropdown-item"> Profile </div>
-        <a href="#" class="logout" @click="LogOut"> Log out </a>
+        <a href="#" class="logout" @click="Logout"> Log out </a>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'; // reaktiivsed muutujad
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { getCurrentInstance } from 'vue';
 
-const isDropdownOpen = ref(false); // ref teeb muutuja, mida vue jälgib
+// --- Setup ---
+const router = useRouter();
+const { emit } = getCurrentInstance();
+
+const isDropdownOpen = ref(false); 
 
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
 
-// Log Out nupp -> sign up page
-const router = useRouter();
-const LogOut = () => {
-  router.push('/signup'); 
+const Logout = () => {
+  emit('logout');
+  isDropdownOpen.value = false;
 };
-
 </script>
 
 <style scoped>
