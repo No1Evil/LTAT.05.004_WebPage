@@ -11,13 +11,8 @@
         <label for="password">Password</label>
         <input v-model="password" type="password" placeholder="Password">
       </div>
-      <div v-if="submitted && passwordErrors.length" class="error-box">
-        <p><strong>Password is not valid:</strong></p>
-        <ul>
-          <li v-for="(err,i) in passwordErrors" :key="i">{{ err }}</li>
-        </ul>
-      </div>
-
+      <!---<div v-if="submitted" class="error-box">
+      </div>-->
 
       <button type="submit">Log in</button> 
     
@@ -26,49 +21,38 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
+import { useStore } from "vuex";
+import router from '../js/router';
+
+const store = useStore();
 
 const email = ref("");
 const password = ref("");
 const submitted = ref(false);
 
-const passwordErrors = computed(() => {
-  const errors = [];
-  const pw = password.value;
+const handleLogin = async () =>  {
+  submitted.value = true;
 
-  if (pw.length < 8 || pw.length > 15)
-    errors.push("Password must be between 8 and 15 characters")
-
-  if (!/^[A-Z]/.test(pw))
-    errors.push("Password must start with an uppercase letter.")
-
-  if (!/[A-Z]/.test(pw))
-    errors.push("Password must include at least one uppercase letter.")
-
-  if ((pw.match(/[a-z]/g) || []).length < 2)
-      errors.push("Password must include at least two lowercase letters.");
-
-  if (!/\d/.test(pw))
-    errors.push("Password must include at least one numeric value.");
-
-  if (!pw.includes("_"))
-    errors.push("Password must include the '_' character.");
-
-    return errors;
-  });
-
-function handleLogin() {
- submitted.value = true;
-
- if (!email.value) {
-  console.log("Email is required.")
+  if (!email.value) {
+    console.log("Email is required.")
   }
 
+  try {
+    const success = await store.dispatch('login', {
+      email: email.value,
+      password: password.value,
+    })
 
+    if (success) {
+      console.log('Logged in')
+      router.push('/')
+    } else {
+      console.log('Login failed')
+    }
 
-  if (passwordErrors.value.length > 0 || !password.value) {
-    console.log("Password invalid:", passwordErrors.value)
-    return;
+  } catch(e){
+    console.error('Login failed', e.message)
   }
 
   console.log("Logging in with:", email.value, password.value)
