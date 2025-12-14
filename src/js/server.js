@@ -13,11 +13,11 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 // We need to include "credentials: true" to allow cookies to be represented  
 // Also "credentials: 'include'" need to be added in Fetch API in the Vue.js App
 
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json()); // Parses incoming requests with JSON payloads and is based on body-parser.
+app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 
 const secret = "gdgdhdbcb770785rgdzqws";
-const maxAge = 60 * 60;
+const maxAge = 60 * 60; //unlike cookies, the expiresIn in jwt token is calculated by seconds not milliseconds
 
 const generateJWT = (id) => {
     return jwt.sign({ id }, secret, { expiresIn: maxAge })
@@ -96,7 +96,6 @@ app.post('/auth/signup', async(req, res) => {
     if (err.code === "23505") {
         return res.status(400).json({error: "Email already registered" });
   }
-  
     res.status(400).json({ error: err.message });
     }
 });

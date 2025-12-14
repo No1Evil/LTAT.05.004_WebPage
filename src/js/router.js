@@ -7,7 +7,17 @@ import ContactPage from '../views/ContactPage.vue';
 import APostPage from '../views/APostPage.vue';
 
 const routes = [
-  { path: '/', component: HomePage },
+  {
+    path: '/', component: HomePage,
+    beforeEnter: async(to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('/login')
+        } else {
+            next();
+        }
+    }
+  },
   { path: '/login', component: Login },
   { path: '/signup', component: SignupPage},
   { path: '/create-post', component: CreatePostPage },
@@ -15,7 +25,6 @@ const routes = [
   { path: '/apost/:id', component: APostPage}
 ];
 
-// some bs
 const router = createRouter({
   history: createWebHistory(),
   routes,
